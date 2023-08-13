@@ -1,0 +1,43 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Grocery</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-explore-container name="Grocery"></app-explore-container>
+  <h3 class="ion-text-center" *ngIf="items.length === 0">
+    No item available on the list.
+  </h3>
+
+  <ion-list *ngIf="items.length > 0">
+    <ion-item-sliding *ngFor="let item of items; let i = index">
+      <ion-item>
+        <h2>{{item.name}}</h2>
+        <p>{{item.quantity}}</p>
+      </ion-item>
+      <ion-item-options>
+        <button (click)="editItem(item, i)" ion-button color="--ion-color-primary" icon-start>
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+        <button (click)="shareItem(item, i)" ion-button color="--ion-color-primary" icon-start>
+          <ion-icon name="share"></ion-icon>
+          Share
+        </button>
+        <button (click)="removeItem(item)" ion-button color="secondary" icon-start>
+          <ion-icon name="trash"></ion-icon>
+          Trash
+        </button>    
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <app-explore-container name="Grocery"></app-explore-container>
+
+  <ion-fab bottom right>
+    <button (click)="addItem()" ion-fab mini>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
